@@ -20,7 +20,13 @@ export const Bomb = ({ status, timeLeft, word, isLarge }: BombProps) => {
   }, [status]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-8 pt-20">
+    <div
+      className={
+        isLarge
+          ? 'relative flex flex-col items-center justify-center px-3 pt-10 pb-0 sm:px-5 sm:pt-12'
+          : 'relative flex flex-col items-center justify-center p-8 pt-20'
+      }
+    >
       <motion.div
         animate={vibrate ? { 
           x: [-4, 4, -4, 4, 0], 
@@ -87,10 +93,14 @@ export const Bomb = ({ status, timeLeft, word, isLarge }: BombProps) => {
         )}
       </motion.div>
 
-      {/* Invisible spacer to maintain layout */}
-      <div className="mt-8 h-4 select-none opacity-0" aria-hidden="true">
-        {timeLeft}
-      </div>
+      {/* 单人用大炸弹时收紧下方留白；PK 等小尺寸保留占位 */}
+      {isLarge ? (
+        <div className="h-1 shrink-0" aria-hidden="true" />
+      ) : (
+        <div className="mt-8 h-4 select-none opacity-0" aria-hidden="true">
+          {timeLeft}
+        </div>
+      )}
     </div>
   );
 };

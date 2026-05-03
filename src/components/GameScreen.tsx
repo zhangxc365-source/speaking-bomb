@@ -226,7 +226,9 @@ if (nextConsecutive > 0 && nextConsecutive % 3 === 0) {
       </div>
 
       {/* Main Game Area */}
-      <div className="flex-1 flex flex-col items-center justify-center gap-2 sm:gap-6 p-4 sm:p-6 z-10 overflow-y-auto scrollbar-hide py-8">
+      <div className="flex-1 flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-6 z-10 overflow-y-auto scrollbar-hide py-4 sm:py-5">
+        {/* 炸弹 + 英文 + 状态条：单独收紧纵向间距 */}
+        <div className="flex flex-col items-center gap-1 sm:gap-1.5 shrink-0">
           <div className="relative cursor-pointer" onClick={() => {
             if (micTroubleDetected || !isVoiceSupported) {
               handleCorrect();
@@ -261,8 +263,7 @@ if (nextConsecutive > 0 && nextConsecutive % 3 === 0) {
             )}
           </div>
 
-        {/* 英文贴在炸弹下方、状态条上方，避免被底部道具栏挡住 */}
-        <div className="text-zinc-500 text-[clamp(0.75rem,3.8vw,1.5rem)] font-bold uppercase tracking-wide text-center max-w-[min(100%,22rem)] mt-3 sm:mt-4 px-3 shrink-0 leading-snug text-balance">
+        <div className="text-zinc-500 text-[clamp(0.75rem,3.8vw,1.5rem)] font-bold uppercase tracking-wide text-center max-w-[min(100%,22rem)] px-3 shrink-0 leading-snug text-balance">
           {currentWord.english}
         </div>
 
@@ -272,7 +273,7 @@ if (nextConsecutive > 0 && nextConsecutive % 3 === 0) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="px-3 py-1 bg-black/5 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 mt-2 sm:mt-3 shrink-0"
+              className="px-3 py-1 bg-black/5 rounded-full text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 shrink-0"
             >
               <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 ${status === 'recognizing' ? 'bg-red-500 scale-125' : 'bg-green-500'} rounded-full animate-pulse transition-all`} />
               {status === 'recognizing' ? '正在识别 RECOGNIZING' : '正在聆听 LISTENING'}
@@ -284,12 +285,13 @@ if (nextConsecutive > 0 && nextConsecutive % 3 === 0) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="bg-white/80 backdrop-blur-md px-6 py-2 sm:px-10 sm:py-4 rounded-2xl border border-zinc-200 shadow-lg text-3xl sm:text-5xl font-mono text-orange-600 font-bold mt-2 shrink-0"
+              className="bg-white/80 backdrop-blur-md px-6 py-2 sm:px-10 sm:py-4 rounded-2xl border border-zinc-200 shadow-lg text-3xl sm:text-5xl font-mono text-orange-600 font-bold mt-1 shrink-0"
             >
               {currentWord.pinyin}
             </motion.div>
           )}
         </AnimatePresence>
+        </div>
 
         {/* Real-time Recognition Feedback */}
         <AnimatePresence>
