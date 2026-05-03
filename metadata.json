@@ -1,0 +1,8 @@
+{
+  "name": "口语炸弹 (Speaking Bomb)",
+  "description": "A fast-paced YCT Chinese speaking game where students must correctly pronounce words before the bomb explodes.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": []
+}
