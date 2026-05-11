@@ -16,7 +16,7 @@ interface PKGameScreenProps {
 }
 
 export const PKGameScreen = ({ words, onFinish, onHome, onRestart }: PKGameScreenProps) => {
-  const [timeLeft, setTimeLeft] = useState(60 + Math.random() * 30);
+  const [timeLeft, setTimeLeft] = useState(45 + Math.random() * 15);
   const [turn, setTurn] = useState<1 | 2>(1);
   const [p1WordIdx, setP1WordIdx] = useState(0);
   const [p2WordIdx, setP2WordIdx] = useState(Math.floor(words.length / 2));
@@ -103,7 +103,7 @@ export const PKGameScreen = ({ words, onFinish, onHome, onRestart }: PKGameScree
     const setItems = player === 1 ? setP1Items : setP2Items;
     if (items.extinguishers > 0) {
       setItems(prev => ({ ...prev, extinguishers: prev.extinguishers - 1 }));
-      setTimeLeft(t => t + 5);
+      // Removed time reward
     }
   };
 
@@ -154,7 +154,6 @@ export const PKGameScreen = ({ words, onFinish, onHome, onRestart }: PKGameScree
       
       const matchPercent = calculateMatchScore(currentWord.chinese, text);
       if (matchPercent >= 15) {
-        setTimeLeft(prev => prev + 1.5);
         handleCorrect();
       }
     }, () => {
